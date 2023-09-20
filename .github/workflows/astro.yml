@@ -38,7 +38,6 @@ jobs:
       - name: Detect package manager
         id: detect-package-manager
         run: |
-          echo "MikeB.xyz detecting-package-manager step" >> $GITHUB_OUTPUT
           if [ -f "${{ github.workspace }}/yarn.lock" ]; then
             echo "manager=yarn" >> $GITHUB_OUTPUT
             echo "command=install" >> $GITHUB_OUTPUT
