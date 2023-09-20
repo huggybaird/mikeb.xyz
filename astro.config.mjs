@@ -53,4 +53,6 @@ export default defineConfig({
     },
     extendDefaultPlugins: true,
   },
+  output: 'static',
+  outDir: './docs',
 });
