@@ -11,37 +11,6 @@
     {
       "name": "Blog",
       "url": "/blog"
-    },
-    {
-      "name": "Pages",
-      "url": "",
-      "hasChildren": true,
-      "children": [
-        {
-          "name": "Contact",
-          "url": "/contact"
-        },
-        {
-          "name": "Elements",
-          "url": "/elements"
-        },
-        {
-          "name": "Authors",
-          "url": "/authors"
-        },
-        {
-          "name": "Categories",
-          "url": "/categories"
-        },
-        {
-          "name": "Search",
-          "url": "/search"
-        },
-        {
-          "name": "404 Page",
-          "url": "/404"
-        }
-      ]
     }
   ],
   "footer": [

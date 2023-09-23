@@ -7,36 +7,59 @@ import { getSinglePage } from "@/lib/contentParser.astro";
 import dateFormat from "@/lib/utils/dateFormat";
 import similerItems from "@/lib/utils/similarItems";
 import { humanize, markdownify, slugify } from "@/lib/utils/textConverter";
-import { Image } from "astro:assets";
+import { Image } from "astro:assets"; 
+
 import {
   FaRegClock,
   FaRegFolder,
   FaRegUserCircle,
 } from "react-icons/fa/index.js";
+ 
 
 const { blog_folder } = config.settings;
 const posts = await getSinglePage(blog_folder);
 const { post } = Astro.props;
 const similarPosts = similerItems(post, posts, post.slug);
 const { Content } = await post.render();
-const { title, description, author, categories, image, date, tags } = post.data;
+const { title, description, author, categories, image, date, tags, image2 } = post.data;
 ---
 
 <section class="section pt-7">
   <div class="container">
+    <!-- START BAIRD  -->
+    <!-- <div class="row justify-center">
+      {
+        allBlogPosts2.map((post) => (
+          <div>
+            <h1> Title = {post.data.title}</h1> 
+            {post.data.image2 === undefined?
+              null
+              :(<Image src={post.data.image2} alt={post.data.title} /> )}
+            
+            
+            <h2>
+              <a href={"/blog/"}>{post.data.title}</a>
+            </h2>
+          </div>
+        ))
+      }
+    </div> -->
+    <!-- END BAIRD  -->
     <div class="row justify-center">
       <article class="lg:col-10">
         {
           image && (
-            <div class="mb-10">
-              <Image
-                src={image}
-                height={500}
-                width={1200}
-                alt={title}
-                class="w-full rounded"
-                format="webp"
-              />
+            <div class="mb-10"> 
+              {post.data.image === undefined?
+              null
+              :(<Image
+                  src={image}
+                  height={500} 
+                  width={1200}
+                  alt={title}
+                  class="w-full rounded"
+                  format="webp" /> 
+                )}
             </div>
           )
         }

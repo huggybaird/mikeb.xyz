@@ -1,5 +1,5 @@
 ---
 title: "Blog Posts"
 meta_title: ""
-description: "this is meta description"
+description: "a random collection of posts from mike baird"
 ---
