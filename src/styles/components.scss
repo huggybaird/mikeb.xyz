@@ -88,13 +88,15 @@
   @apply overflow-hidden rounded-lg border border-border dark:border-darkmode-border;
   &-nav {
     @apply flex border-b border-border bg-theme-light dark:border-darkmode-border dark:bg-darkmode-theme-light;
-    @apply m-0 #{!important};
-    @apply list-none #{!important};
+    margin: 0 !important;
+    list-style-type: none !important;
 
     &-item {
       @apply cursor-pointer border-b-[3px] border-border py-2 text-lg text-dark opacity-80 dark:border-light;
-      @apply my-0 #{!important};
-      @apply px-8 #{!important};
+      margin-top: 0 !important;
+      margin-bottom: 0 !important;
+      padding-left: 2rem !important;
+      padding-right: 2rem !important;
 
       &.active {
         @apply border-b-[3px] border-dark opacity-100 dark:border-darkmode-primary;
@@ -140,7 +142,7 @@
 .modal {
   @apply fixed inset-0 z-40 hidden h-full w-full overflow-auto;
   &-overlay {
-    @apply fixed inset-0 z-40 hidden h-full w-full bg-black bg-opacity-40;
+    @apply fixed inset-0 z-40 hidden h-full w-full bg-black/40;
   }
   &-content {
     @apply relative top-1/2 z-50 mx-auto max-w-[90%] -translate-y-1/2 rounded-lg bg-body p-8 dark:bg-darkmode-body;

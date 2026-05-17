@@ -5,8 +5,8 @@ import CallToAction from "@/partials/CallToAction.astro";
 import Testimonial from "@/partials/Testimonial.astro";
 import type { Button, Feature } from "@/types";
 import { Image } from "astro:assets";
-import { getEntryBySlug } from "astro:content";
-import { FaCheck } from "react-icons/fa/index.js";
+import { getEntry } from "astro:content";
+import { FaCheck } from "react-icons/fa";
 
 interface Homepage {
   banner: {
@@ -18,10 +18,10 @@ interface Homepage {
   features: Feature[];
 }
 
-const homepage = await getEntryBySlug("homepage", "-index");
-const testimonial = await getEntryBySlug("sections", "testimonial");
-const call_to_action = await getEntryBySlug("sections", "call-to-action");
-const { banner, features }: Homepage = homepage.data;
+const homepage = await getEntry("homepage", "-index");
+const testimonial = await getEntry("sections", "testimonial");
+const call_to_action = await getEntry("sections", "call-to-action");
+const { banner, features }: Homepage = homepage?.data || { banner: {}, features: [] };
 ---
 
 <Base>
@@ -31,7 +31,7 @@ const { banner, features }: Homepage = homepage.data;
       <div class="row justify-center">
         <div class="mb-16 text-center lg:col-7">
           <h1 set:html={markdownify(banner.title)} class="mb-4" />
-          <h3 class="mb-8 text-primary dark:text-darkmode-text" > Coding <strong>|</strong> Robotics <strong>|</strong> Startups</h2>
+          <h3 class="mb-8 text-primary dark:text-darkmode-text" > Coding <strong>|</strong> Robotics <strong>|</strong> Startups</h3>
           <!-- <p set:html={markdownify(banner.content)} class="mb-8" />
           {
             banner.button.enable && (

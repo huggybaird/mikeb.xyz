@@ -6,11 +6,12 @@ import Base from "@/layouts/Base.astro";
 import { getSinglePage } from "@/lib/contentParser.astro";
 import { slugify } from "@/lib/utils/textConverter";
 import { Image } from "astro:assets";
+import { render } from "astro:content";
 
 export async function getStaticPaths() {
   const authors = await getSinglePage("authors");
 
-  const paths = authors.map((author) => ({
+  const paths = authors.map((author: any) => ({
     params: {
       single: author.slug,
     },
@@ -22,10 +23,10 @@ export async function getStaticPaths() {
 const { blog_folder }: { blog_folder: string } = config.settings;
 const { author } = Astro.props;
 const { title, social, meta_title, description, image } = author.data;
-const { Content } = await author.render();
+const { Content } = await render(author);
 const posts = await getSinglePage(blog_folder);
 const postFilterByAuthor = posts.filter(
-  (post) => slugify(post.data.author) === slugify(title),
+  (post: any) => slugify(post.data.author) === slugify(title),
 );
 ---
 
@@ -63,7 +64,7 @@ const postFilterByAuthor = posts.filter(
 
       <div class="row justify-center pb-16 pt-14">
         {
-          postFilterByAuthor.map((post) => (
+          postFilterByAuthor.map((post: any) => (
             <div class="mb-12 md:col-6 lg:col-4">
               <BlogCard data={post} />
             </div>

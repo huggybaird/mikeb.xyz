@@ -8,19 +8,20 @@ import dateFormat from "@/lib/utils/dateFormat";
 import similerItems from "@/lib/utils/similarItems";
 import { humanize, markdownify, slugify } from "@/lib/utils/textConverter";
 import { Image } from "astro:assets"; 
+import { render } from "astro:content";
 
 import {
   FaRegClock,
   FaRegFolder,
   FaRegUserCircle,
-} from "react-icons/fa/index.js";
+} from "react-icons/fa";
  
 
 const { blog_folder } = config.settings;
 const posts = await getSinglePage(blog_folder);
 const { post } = Astro.props;
 const similarPosts = similerItems(post, posts, post.slug);
-const { Content } = await post.render();
+const { Content } = await render(post);
 const { title, description, author, categories, image, date, tags, image2 } = post.data;
 ---
 
