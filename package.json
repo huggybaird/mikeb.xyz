@@ -2,7 +2,7 @@
   "name": "MikeB.xyz",
   "version": "1.0.0",
   "description": "Mike Baird's Personal Blog",
-  "author": "Mike Baird",
+  "author": "Mike Baird (aka HuggyBaird)",
   "license": "MIT",
   "packageManager": "yarn@1.22.22",
   "scripts": {
@@ -58,5 +58,8 @@
     "tailwind-bootstrap-grid": "^7.0.0",
     "tailwindcss": "^4.3.0",
     "typescript": "6.0.3"
+  },
+  "overrides": {
+    "vite": "^7"
   }
 }

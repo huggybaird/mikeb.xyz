@@ -1,14 +1,14 @@
 // navbar toggler
 input#nav-toggle:checked + label #show-button {
-  @apply hidden;
+  display: none !important;
 }
 
 input#nav-toggle:checked + label #hide-button {
-  @apply block;
+  display: block !important;
 }
 
 input#nav-toggle:checked ~ #nav-menu {
-  @apply block;
+  display: block !important;
 }
 
 .header {

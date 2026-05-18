@@ -38,6 +38,11 @@
   - Developed custom presentation components: `ProjectCard.astro` for item list previews and `ProjectSingle.astro` layout for individual project details (both fully customized to exclude tags and categories).
   - Built the page templates under `src/pages/projects/`: the main index route, dynamic page pagination route, and `[single].astro` dynamic project route.
   - Resolved dynamic JSON import resolution caching warnings by casting `config.settings` as `any` during `projects_folder` destructuring across `projects/index.astro`, `projects/page/[slug].astro`, and `ProjectCard.astro`.
+- **Fix Mobile Screen Navigation Toggler**:
+  - Identified that Tailwind CSS v4's `.hidden` utility class uses `display: none !important;` by default. This overrode the custom SCSS checked sibling selectors in `navigation.scss` (which lacked `!important`), causing the menu to stay hidden and the hamburger icon not to change.
+  - Updated the toggler SCSS rules inside `src/styles/navigation.scss` to use explicit `!important` overrides, ensuring the checkbox state successfully controls menu expand/collapse.
+  - Resolved Vite 8/Rolldown compatibility warnings on dev reload by adding `"overrides": { "vite": "^7" }` in `package.json` to lock Vite to version 7 as officially required by Astro v6.
+
 
 
 
