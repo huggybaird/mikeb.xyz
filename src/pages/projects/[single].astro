@@ -1,0 +1,30 @@
+---
+import config from "@/config/config.json";
+import Base from "@/layouts/Base.astro";
+import ProjectSingle from "@/layouts/ProjectSingle.astro";
+import { getSinglePage } from "@/lib/contentParser.astro";
+
+export async function getStaticPaths() {
+  const projects = await getSinglePage(config.settings.projects_folder);
+
+  const paths = projects.map((project: any) => ({
+    params: {
+      single: project.slug,
+    },
+    props: { project },
+  }));
+  return paths;
+}
+
+const { project } = Astro.props;
+const { title, meta_title, description, image } = project.data;
+---
+
+<Base
+  title={title}
+  meta_title={meta_title}
+  description={description}
+  image={image}
+>
+  <ProjectSingle project={project} />
+</Base>

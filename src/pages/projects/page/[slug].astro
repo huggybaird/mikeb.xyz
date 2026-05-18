@@ -1,0 +1,67 @@
+---
+import ProjectCard from "@/components/ProjectCard.astro";
+import Pagination from "@/components/Pagination.astro";
+import config from "@/config/config.json";
+import Base from "@/layouts/Base.astro";
+import { getSinglePage } from "@/lib/contentParser.astro";
+import { sortByDate } from "@/lib/utils/sortFunctions";
+import PageHeader from "@/partials/PageHeader.astro";
+import { getEntry } from "astro:content";
+
+const { projects_folder } = config.settings;
+const { slug } = Astro.params;
+const projectIndex = await getEntry(projects_folder, "-index");
+const projects = await getSinglePage(projects_folder);
+const sortedProjects = sortByDate(projects);
+const totalPages = Math.ceil(projects.length / config.settings.pagination);
+const currentPage = slug && !isNaN(Number(slug)) ? Number(slug) : 1;
+const indexOfLastProject = currentPage * config.settings.pagination;
+const indexOfFirstProject = indexOfLastProject - config.settings.pagination;
+const currentProjects = sortedProjects.slice(indexOfFirstProject, indexOfLastProject);
+
+export async function getStaticPaths() {
+  const projects = await getSinglePage(config.settings.projects_folder);
+  const totalPages = Math.ceil(projects.length / config.settings.pagination);
+  const paths = [];
+
+  for (let i = 1; i < totalPages; i++) {
+    paths.push({
+      params: {
+        slug: (i + 1).toString(),
+      },
+    });
+  }
+  return paths;
+}
+---
+
+<Base
+  title={projectIndex.data.title}
+  meta_title={projectIndex.data.meta_title}
+  image={projectIndex.data.image}
+  description={projectIndex.data.description}
+>
+  <PageHeader title={projectIndex.data.title} />
+  <section class="section">
+    <div class="container">
+      <div class="row justify-center">
+        <div class="lg:col-10">
+          <div class="row">
+            {
+              currentProjects.map((project: any) => (
+                <div class="mb-14 md:col-6">
+                  <ProjectCard data={project} />
+                </div>
+              ))
+            }
+          </div>
+          <Pagination
+            section={projects_folder}
+            currentPage={currentPage}
+            totalPages={totalPages}
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

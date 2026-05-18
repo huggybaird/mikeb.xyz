@@ -17,6 +17,20 @@ const blogCollection = defineCollection({
   }),
 });
 
+// Projects collection schema
+const projectsCollection = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/projects" }),
+  schema: ({ image }) => z.object({
+    title: z.string(),
+    meta_title: z.string().optional(),
+    description: z.string().optional(),
+    date: z.date().optional(),
+    image: image().optional(),
+    author: z.string().default("Admin"),
+    draft: z.boolean().optional(),
+  }),
+});
+
 // Author collection schema
 const authorsCollection = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx,json}", base: "./src/content/authors" }),
@@ -78,4 +92,5 @@ export const collections = {
   contact: contactCollection,
   about: aboutCollection,
   sections: sectionsCollection,
+  projects: projectsCollection,
 };

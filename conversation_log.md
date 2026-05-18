@@ -30,5 +30,13 @@
   - Removed outdated type parameters `<any, string>` from Astro `getEntry` calls in `authors/index.astro`, `blog/index.astro`, and `blog/page/[slug].astro` to align with Astro v6 types.
 - **Fix NPM Install & Update Errors**:
   - Removed the unused `@astrojs/tailwind` package from `package.json` to resolve the ERESOLVE peer dependency tree conflict with Astro v6, restoring the ability to run standard `npm install` and `npm update` cleanly.
+- **Implement Projects Section**:
+  - Added "Projects" navigation item to `src/config/menu.json` between "Home" and "About".
+  - Configured `"projects_folder": "projects"` inside `src/config/config.json`.
+  - Registered and structured the new `projects` content collection schema in `src/content.config.ts`.
+  - Created sample markdown entries `project-1.md`, `project-2.md`, and index page metadata `-index.md` in `src/content/projects/`.
+  - Developed custom presentation components: `ProjectCard.astro` for item list previews and `ProjectSingle.astro` layout for individual project details (both fully customized to exclude tags and categories).
+  - Built the page templates under `src/pages/projects/`: the main index route, dynamic page pagination route, and `[single].astro` dynamic project route.
+
 
 
