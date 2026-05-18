@@ -8,7 +8,7 @@ import { sortByDate } from "@/lib/utils/sortFunctions";
 import PageHeader from "@/partials/PageHeader.astro";
 import { getEntry } from "astro:content";
 
-const { projects_folder } = config.settings;
+const { projects_folder }: { projects_folder: string } = config.settings as any;
 const projectIndex = await getEntry(projects_folder, "-index");
 const projects = await getSinglePage(projects_folder);
 const sortedProjects = sortByDate(projects);

@@ -37,6 +37,8 @@
   - Created sample markdown entries `project-1.md`, `project-2.md`, and index page metadata `-index.md` in `src/content/projects/`.
   - Developed custom presentation components: `ProjectCard.astro` for item list previews and `ProjectSingle.astro` layout for individual project details (both fully customized to exclude tags and categories).
   - Built the page templates under `src/pages/projects/`: the main index route, dynamic page pagination route, and `[single].astro` dynamic project route.
+  - Resolved dynamic JSON import resolution caching warnings by casting `config.settings` as `any` during `projects_folder` destructuring across `projects/index.astro`, `projects/page/[slug].astro`, and `ProjectCard.astro`.
+
 
 
 

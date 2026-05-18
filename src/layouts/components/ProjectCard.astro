@@ -7,7 +7,7 @@ import { FaRegUserCircle } from "react-icons/fa";
 const {
   summary_length,
   projects_folder,
-}: { summary_length: number; projects_folder: string } = config.settings;
+}: { summary_length: number; projects_folder: string } = config.settings as any;
 const { data } = Astro.props;
 const { title, image, date, author } = data.data;
 ---
